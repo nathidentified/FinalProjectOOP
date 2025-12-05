@@ -16,8 +16,6 @@ public class CafeOrderingSystem {
     public static void main(String[] args) {
         order = new Order();
 
-
-// 3D-style ASCII text
         String title =
                 CYAN + BOLD +
                         "        *****     *****     ******    ******      \n" +
@@ -106,12 +104,11 @@ public class CafeOrderingSystem {
 
                 default:
                     System.out.println("Invalid choice!");
-            } // END SWITCH
-        } // END WHILE
-    } // END MAIN
+            }
+        }
+    }
 
 
-    // KIOSK MENU
     private static void displayKiosk() {
         System.out.println(CYAN + "\nKiosk:" + RESET);
         System.out.println(MAGENTA + "1. View Menu" + RESET);
@@ -122,7 +119,6 @@ public class CafeOrderingSystem {
         System.out.print("Enter your choice: ");
     }
 
-    // VIEW MENU
     private static void viewMenu() {
         System.out.println(CYAN + BOLD + "\n=============================== Menu =================================" + RESET);
         System.out.println(MAGENTA + BOLD + "\n-------------------------------DRINKS---------------------------------"+ RESET);
@@ -142,7 +138,6 @@ public class CafeOrderingSystem {
         System.out.println(YELLOW +"\n====================================================================="+ RESET);
     }
 
-    // ADD ITEM
     private static void addItemToOrder() {
         boolean addingItems = true;
 
@@ -193,7 +188,6 @@ public class CafeOrderingSystem {
         }
     }
 
-    // CATEGORY SELECTORS
     private static MenuItem selectMainCourse() {
         System.out.println("\nMain Course:");
         System.out.println("1. Pasta  - Php 60");
@@ -245,3 +239,4 @@ public class CafeOrderingSystem {
         }
     }
 }
+
