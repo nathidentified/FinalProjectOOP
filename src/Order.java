@@ -14,7 +14,6 @@ class Order {
     }
 
     public void addItem(MenuItem item, int quantity) {
-        // Check if item with same variation exists
         for (OrderItem oi : items) {
             if (oi.getItem().getDisplayName().equals(item.getDisplayName())) {
                 oi.addQuantity(quantity);
@@ -29,14 +28,14 @@ class Order {
             System.out.println("\nYour order is empty!");
             return;
         }
-        System.out.println("\n========== Current Order ==========");
+        System.out.println("\n================= Current Order =================");
         for (OrderItem oi : items) {
-            System.out.printf("%d  %-30s ₱%.2f\n",
+            System.out.printf("%-4d  %-30s Php %.2f\n",
                     oi.getQuantity(),
                     oi.getItem().getDisplayName(),
                     oi.getTotalPrice());
         }
-        System.out.println("===================================");
+        System.out.println("==================================================");
     }
 
     public double getSubtotal() {
@@ -50,7 +49,6 @@ class Order {
         long hours = duration.toHours();
         long minutes = duration.toMinutes() % 60;
 
-        // Calculate time-based charge (₱50 for every 30 minutes)
         long totalMinutes = duration.toMinutes();
         double timeCharge = Math.floor(totalMinutes / 30.0) * 50;
 
@@ -64,38 +62,78 @@ class Order {
             System.out.printf("(Add every after 30 minutes) Extra Charge for long stay: ₱%.0f\n", timeCharge);
         }
 
-        // Print receipt
-        System.out.println("\n==========================================");
+        System.out.println("\n==================================================");
         System.out.println("               C A F É  J A V A           ");
         System.out.println("                O F F I C I A L           ");
         System.out.println("                 R E C E I P T            ");
-        System.out.println("==========================================");
+        System.out.println("===================================================");
         System.out.println("Time In: " + timeIn.format(timeFormatter));
         System.out.println("Time Out: " + timeOut.format(timeFormatter));
         System.out.println("Duration: " + hours + "h " + minutes + "m");
-        System.out.println("------------------------------------------");
-        System.out.println("Items Purchased:");
-        System.out.println("------------------------------------------");
+        System.out.println("---------------------------------------------------");
+        System.out.println("Qty  Item                               Price");
+        System.out.println("---------------------------------------------------");
 
         for (OrderItem oi : items) {
-            System.out.printf("%-2d %-30s ₱%.2f\n",
+            System.out.printf("%-4d %-30s %7s%.2f\n",
                     oi.getQuantity(),
                     oi.getItem().getDisplayName(),
+                    "Php ",
                     oi.getTotalPrice());
         }
 
-        System.out.println("------------------------------------------");
-        System.out.printf("Subtotal:                       ₱%.2f\n", getSubtotal());
+        System.out.println("----------------------------------------------------");
+        System.out.printf("%-34s %7s%.2f\n", "Subtotal:", "Php ", getSubtotal());
+
         if (timeCharge > 0) {
-            System.out.printf("Time-Based Charge:                       ₱%.0f\n", timeCharge);
+            System.out.printf("%-34s %7s%.0f\n", "Time-Based Charge:", "Php ", timeCharge);
         }
-        System.out.println("------------------------------------------");
-        System.out.printf("TOTAL AMOUNT:                       ₱%.2f\n", getSubtotal() + timeCharge);
-        System.out.println("==========================================");
-        System.out.println("     THANK YOU FOR DINING WITH US!        ");
-        System.out.println("          PLEASE COME AGAIN 🙂            ");
-        System.out.println("==========================================");
+
+        System.out.println("----------------------------------------------------");
+        System.out.printf("%-34s %7s%.2f\n", "TOTAL AMOUNT:", "Php ", getSubtotal() + timeCharge);
+        System.out.println("====================================================");
+        System.out.println("            THANK YOU FOR DINING WITH US!        ");
+        System.out.println("                PLEASE COME AGAIN :)            ");
+        System.out.println("====================================================");
     }
+
+    public LocalDateTime getTimeIn() {
+        return timeIn;
+    }
+
+    public void editOrderItem(String editName, int newQty) {
+        for (OrderItem oi : items) {
+            if (oi.getItem().getDisplayName().equalsIgnoreCase(editName)) {
+
+                if (newQty <= 0) {
+                    System.out.println("Quantity must be at least 1.");
+                    return;
+                }
+
+                oi.addQuantity(newQty);
+                System.out.println("Item updated successfully!");
+                return;
+            }
+        }
+        System.out.println("Item not found in order.");
+    }
+
+    public void removeOrderItem(String deleteName) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getItem().getDisplayName().equalsIgnoreCase(deleteName)) {
+                items.remove(i);
+                System.out.println("Item removed successfully!");
+                return;
+            }
+        }
+        System.out.println("Item not found in order.");
+    }
+
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+}
 
     public LocalDateTime getTimeIn() { return timeIn; }
 }
+
