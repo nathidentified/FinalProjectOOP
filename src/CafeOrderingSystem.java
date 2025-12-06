@@ -201,7 +201,9 @@ public class CafeOrderingSystem {
             case 1: return new MainCourse("Pasta", 60 + choice);
             case 2: return new MainCourse("Burger", 75 + choice);
             case 3: return new MainCourse("Fries", 50 + choice);
-            default: return null;
+            default: 
+                System.out.println("Invalid choice! Please select 1, 2, or 3.");
+                return null;
         }
     }
 
@@ -218,7 +220,9 @@ public class CafeOrderingSystem {
             case 1: return new Drink("Milktea", 55);
             case 2: return new Drink("Coffee", 60);
             case 3: return new Drink("Fruit Soda", 45);
-            default: return null;
+            default: 
+                System.out.println("Invalid choice! Please select 1, 2, or 3.");
+                return null;
         }
     }
 
@@ -235,9 +239,12 @@ public class CafeOrderingSystem {
             case 1: return new Pastry("Cake", 85);
             case 2: return new Pastry("Donut", 45);
             case 3: return new Pastry("Cupcake", 50);
-            default: return null;
+            default: 
+                System.out.println("Invalid choice! Please select 1, 2, or 3.");
+                return null;
         }
     }
 }
+
 
 
