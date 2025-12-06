@@ -188,12 +188,6 @@ abstract class MenuItem {
 }
 ```
 
-### Additional OOP Concepts
-
-- **Composition**: `Order` contains `OrderItem` objects, and `OrderItem` contains `MenuItem` objects
-- **Single Responsibility Principle**: Each class has one clear purpose
-- **Open/Closed Principle**: Easy to extend with new item types without modifying existing code
-
 ---
 
 ## Program Structure
